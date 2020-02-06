@@ -1,0 +1,22 @@
+{
+  "name": "cartaintermedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "randomizador": "(tsc Randomizador.ts || echo) && node Randomizador.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FLAP-DEV/CartaIntermedia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FLAP-DEV/CartaIntermedia/issues"
+  },
+  "homepage": "https://github.com/FLAP-DEV/CartaIntermedia#readme",
+  "dependencies": {
+    "prompts": "^2.3.0"
+  }
+}
