@@ -2,7 +2,6 @@ import * as prompts from 'prompts'
 async function Randomizar(){
     let cartas = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     let contadores = [4,4,4,4,4,4,4,4,4,4,4,4,4]
-    let iteraciones = 0
     async function SacarCartas(){     
         let numero_de_ceros = contadores.reduce(function(acumulador,valoractual){
             if(valoractual == 0){
@@ -46,9 +45,9 @@ async function Randomizar(){
             contadores[ValorAleatorio1]--
             contadores[ValorAleatorio2]--
             //console.log(ValorAleatorio1,ValorAleatorio2)
-            iteraciones++
             console.log(contadores)
             console.log(cartas)
+            decidir()
         }else{
             if(contadores[ValorAleatorio1]==1){
                 SacarCartas()
@@ -56,24 +55,37 @@ async function Randomizar(){
                 contadores[ValorAleatorio1]--
             contadores[ValorAleatorio2]--
             //console.log(ValorAleatorio1,ValorAleatorio2)
-            iteraciones++
             console.log(contadores)
             console.log(cartas)
+            decidir()
             }
             }
-            let decision = await prompts({
-                type: 'text',
-                name: 'eleccion',
-                message: 'Inserte: \n 1 -> Seguir 0 -> Salir'
-            })
-            switch(decision.eleccion){
-                case '0':
-                    console.log('Finalizado')
-                    break;
-                case '1':
-                    SacarCartas()    
-                    break;
+            async function decidir(){
+                let decision = await prompts({
+                    type: 'text',
+                    name: 'eleccion',
+                    message: 'Inserte: \n 1 -> Seguir 0 -> Salir'
+                })
+                switch(decision.eleccion){
+                    case '0':
+                        console.log('Finalizado')
+                        break;
+                    case '1':
+                        let total_cartas = contadores.reduce(
+                            function(acumulador,valoractual){
+                                return acumulador + valoractual
+                            },
+                            0
+                        )
+                        if(total_cartas != 0){
+                            SacarCartas() 
+                        }else{
+                            console.log('Se han acabado las cartas')
+                        }                          
+                        break;
+                }
             }
+            
     }  
     SacarCartas() 
 }
