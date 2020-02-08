@@ -21,45 +21,96 @@ async function Randomizar(){
                 switch(numero_de_ceros){
                     case 1 :
                         cartas.splice(posicion_del_cero,1)
-                        console.log('Se ha eliminado', posicion_del_cero)
+                        contadores.splice(posicion_del_cero,1)
+                        // console.log('Se ha eliminado', posicion_del_cero)
                         break;
                     case 2 :
                         cartas.splice(posicion_del_cero,1)
+                        contadores.splice(posicion_del_cero,1)
                         cartas.splice(contadores.indexOf(0),1)
+                        contadores.splice(contadores.indexOf(0),1)
+                        // console.log('Se han eliminado 2', posicion_del_cero)
+                        break;
+                    case 3 :
+                        cartas.splice(posicion_del_cero,1)
+                        contadores.splice(posicion_del_cero,1)
+                        cartas.splice(contadores.indexOf(0),1)
+                        contadores.splice(contadores.indexOf(0),1)
+                        cartas.splice(contadores.indexOf(0),1)
+                        contadores.splice(contadores.indexOf(0),1)
+                        // console.log('Se han eliminado 3')
                         break;
                 }
-                contadores = contadores.filter(function(valoractual){
+                /*contadores = contadores.filter(function(valoractual){
                     return valoractual != 0
-                })
+                })*/
             }
         }
  
-        let ValorAleatorio1 = Math.floor((contadores.length-1)*Math.random())
-        let ValorAleatorio2 = Math.floor((contadores.length-1)*Math.random())
-        // console.log(ValorAleatorio)
+        let ValorAleatorio1 = Math.floor((contadores.length)*Math.random())
+        let ValorAleatorio2 = Math.floor((contadores.length)*Math.random())
+        let ValorAleatorio3 = Math.floor((contadores.length)*Math.random())
         let carta_obtenida1 = cartas[ValorAleatorio1]
         let carta_obtenida2 = cartas[ValorAleatorio2]
-        console.log(carta_obtenida1, carta_obtenida2)
-        //console.log(carta_obtenida1,carta_obtenida2)
-        if(ValorAleatorio1 != ValorAleatorio2){
+        let carta_obtenida3 = cartas[ValorAleatorio3]
+        
+        
+        function eliminar_cartas(){
             contadores[ValorAleatorio1]--
             contadores[ValorAleatorio2]--
-            //console.log(ValorAleatorio1,ValorAleatorio2)
-            console.log(contadores)
-            console.log(cartas)
+            contadores[ValorAleatorio3]--
+            let total_cartas = contadores.reduce(
+                function(acumulador,valoractual){
+                    return acumulador + valoractual
+                },
+                0
+            )
+            console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
+            console.log('contadores:', contadores)
+            console.log('cartas:    ', cartas)
+            console.log("Total:", total_cartas)
+        }
+        const todos_los_valores_diferentes = ValorAleatorio1 != ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3 && ValorAleatorio2 != ValorAleatorio3
+        const caso1 = (ValorAleatorio1 == ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3) || 
+        ValorAleatorio2 == ValorAleatorio3 && ValorAleatorio1 != ValorAleatorio2
+        const caso2 = ValorAleatorio1 == ValorAleatorio3 && ValorAleatorio1 != ValorAleatorio2
+        const todos_los_valores_iguales = ValorAleatorio1 == ValorAleatorio2 && ValorAleatorio2 == ValorAleatorio3
+        && ValorAleatorio1 == ValorAleatorio3
+        if(todos_los_valores_diferentes){
+            eliminar_cartas()
             decidir()
         }else{
-            if(contadores[ValorAleatorio1]==1){
-                SacarCartas()
-            }else{
-                contadores[ValorAleatorio1]--
-            contadores[ValorAleatorio2]--
-            //console.log(ValorAleatorio1,ValorAleatorio2)
-            console.log(contadores)
-            console.log(cartas)
-            decidir()
+            if(caso1){
+                if(contadores[ValorAleatorio2]==1){
+                    SacarCartas()
+                }else{
+                    eliminar_cartas()
+                    decidir()
+                }  
+            }
+            if(caso2){
+                if(contadores[ValorAleatorio1] == 1){
+                    SacarCartas()
+                }else{
+                    eliminar_cartas()
+                    decidir()
+                }
+            }
+            if (todos_los_valores_iguales){
+                if(contadores[ValorAleatorio1] == 2 || contadores[ValorAleatorio1] == 1){
+                    SacarCartas()
+                }else{
+                    eliminar_cartas()
+                    decidir()
+                }
             }
             }
+            let total_cartas = contadores.reduce(
+                function(acumulador,valoractual){
+                    return acumulador + valoractual
+                },
+                0
+            )
             async function decidir(){
                 let decision = await prompts({
                     type: 'text',
@@ -71,13 +122,8 @@ async function Randomizar(){
                         console.log('Finalizado')
                         break;
                     case '1':
-                        let total_cartas = contadores.reduce(
-                            function(acumulador,valoractual){
-                                return acumulador + valoractual
-                            },
-                            0
-                        )
-                        if(total_cartas != 0){
+                        
+                        if(total_cartas != 1){
                             SacarCartas() 
                         }else{
                             console.log('Se han acabado las cartas')

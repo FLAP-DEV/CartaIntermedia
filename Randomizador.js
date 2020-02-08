@@ -49,21 +49,46 @@ function Randomizar() {
                         switch (numero_de_ceros) {
                             case 1:
                                 cartas.splice(posicion_del_cero, 1);
-                                console.log('Se ha eliminado', posicion_del_cero);
+                                contadores.splice(posicion_del_cero, 1);
+                                // console.log('Se ha eliminado', posicion_del_cero)
                                 break;
                             case 2:
                                 cartas.splice(posicion_del_cero, 1);
+                                contadores.splice(posicion_del_cero, 1);
                                 cartas.splice(contadores.indexOf(0), 1);
+                                contadores.splice(contadores.indexOf(0), 1);
+                                // console.log('Se han eliminado 2', posicion_del_cero)
+                                break;
+                            case 3:
+                                cartas.splice(posicion_del_cero, 1);
+                                contadores.splice(posicion_del_cero, 1);
+                                cartas.splice(contadores.indexOf(0), 1);
+                                contadores.splice(contadores.indexOf(0), 1);
+                                cartas.splice(contadores.indexOf(0), 1);
+                                contadores.splice(contadores.indexOf(0), 1);
+                                // console.log('Se han eliminado 3')
                                 break;
                         }
-                        contadores = contadores.filter(function (valoractual) {
-                            return valoractual != 0;
-                        });
+                        /*contadores = contadores.filter(function(valoractual){
+                            return valoractual != 0
+                        })*/
                     }
+                }
+                function eliminar_cartas() {
+                    contadores[ValorAleatorio1]--;
+                    contadores[ValorAleatorio2]--;
+                    contadores[ValorAleatorio3]--;
+                    var total_cartas = contadores.reduce(function (acumulador, valoractual) {
+                        return acumulador + valoractual;
+                    }, 0);
+                    console.log('cartas obtenidas:', carta_obtenida1, carta_obtenida2, carta_obtenida3);
+                    console.log('contadores:', contadores);
+                    console.log('cartas:    ', cartas);
+                    console.log("Total:", total_cartas);
                 }
                 function decidir() {
                     return __awaiter(this, void 0, void 0, function () {
-                        var decision, total_cartas;
+                        var decision;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, prompts({
@@ -78,10 +103,7 @@ function Randomizar() {
                                             console.log('Finalizado');
                                             break;
                                         case '1':
-                                            total_cartas = contadores.reduce(function (acumulador, valoractual) {
-                                                return acumulador + valoractual;
-                                            }, 0);
-                                            if (total_cartas != 0) {
+                                            if (total_cartas != 1) {
                                                 SacarCartas();
                                             }
                                             else {
@@ -94,7 +116,7 @@ function Randomizar() {
                         });
                     });
                 }
-                var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, carta_obtenida1, carta_obtenida2;
+                var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, ValorAleatorio3, carta_obtenida1, carta_obtenida2, carta_obtenida3, todos_los_valores_diferentes, caso1, caso2, todos_los_valores_iguales, total_cartas;
                 return __generator(this, function (_a) {
                     numero_de_ceros = contadores.reduce(function (acumulador, valoractual) {
                         if (valoractual == 0) {
@@ -107,33 +129,54 @@ function Randomizar() {
                     }, 0);
                     console.log(numero_de_ceros);
                     verificar_ceros();
-                    ValorAleatorio1 = Math.floor((contadores.length - 1) * Math.random());
-                    ValorAleatorio2 = Math.floor((contadores.length - 1) * Math.random());
+                    ValorAleatorio1 = Math.floor((contadores.length) * Math.random());
+                    ValorAleatorio2 = Math.floor((contadores.length) * Math.random());
+                    ValorAleatorio3 = Math.floor((contadores.length) * Math.random());
                     carta_obtenida1 = cartas[ValorAleatorio1];
                     carta_obtenida2 = cartas[ValorAleatorio2];
-                    console.log(carta_obtenida1, carta_obtenida2);
-                    //console.log(carta_obtenida1,carta_obtenida2)
-                    if (ValorAleatorio1 != ValorAleatorio2) {
-                        contadores[ValorAleatorio1]--;
-                        contadores[ValorAleatorio2]--;
-                        //console.log(ValorAleatorio1,ValorAleatorio2)
-                        console.log(contadores);
-                        console.log(cartas);
+                    carta_obtenida3 = cartas[ValorAleatorio3];
+                    todos_los_valores_diferentes = ValorAleatorio1 != ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3 && ValorAleatorio2 != ValorAleatorio3;
+                    caso1 = (ValorAleatorio1 == ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3) ||
+                        ValorAleatorio2 == ValorAleatorio3 && ValorAleatorio1 != ValorAleatorio2;
+                    caso2 = ValorAleatorio1 == ValorAleatorio3 && ValorAleatorio1 != ValorAleatorio2;
+                    todos_los_valores_iguales = ValorAleatorio1 == ValorAleatorio2 && ValorAleatorio2 == ValorAleatorio3
+                        && ValorAleatorio1 == ValorAleatorio3;
+                    if (todos_los_valores_diferentes) {
+                        eliminar_cartas();
                         decidir();
                     }
                     else {
-                        if (contadores[ValorAleatorio1] == 1) {
-                            SacarCartas();
+                        if (caso1) {
+                            if (contadores[ValorAleatorio2] == 1) {
+                                SacarCartas();
+                            }
+                            else {
+                                eliminar_cartas();
+                                decidir();
+                            }
                         }
-                        else {
-                            contadores[ValorAleatorio1]--;
-                            contadores[ValorAleatorio2]--;
-                            //console.log(ValorAleatorio1,ValorAleatorio2)
-                            console.log(contadores);
-                            console.log(cartas);
-                            decidir();
+                        if (caso2) {
+                            if (contadores[ValorAleatorio1] == 1) {
+                                SacarCartas();
+                            }
+                            else {
+                                eliminar_cartas();
+                                decidir();
+                            }
+                        }
+                        if (todos_los_valores_iguales) {
+                            if (contadores[ValorAleatorio1] == 2 || contadores[ValorAleatorio1] == 1) {
+                                SacarCartas();
+                            }
+                            else {
+                                eliminar_cartas();
+                                decidir();
+                            }
                         }
                     }
+                    total_cartas = contadores.reduce(function (acumulador, valoractual) {
+                        return acumulador + valoractual;
+                    }, 0);
                     return [2 /*return*/];
                 });
             });
