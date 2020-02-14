@@ -84,6 +84,7 @@ function Randomizar() {
                     }, 0);
                     console.log("Tu primera carta es: ", carta_obtenida1);
                     console.log("Tu segunda carta es: ", carta_obtenida2);
+                    console.log("Tu tercera carta es: ", carta_obtenida3);
                     //DeseaApostar(carta_obtenida3);
                     /*
                     console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
@@ -94,7 +95,7 @@ function Randomizar() {
                 }
                 function decidir() {
                     return __awaiter(this, void 0, void 0, function () {
-                        var decision, _a, CuantoApuestas, Apuesta;
+                        var decision, _a, Apuesta, CuantoApuestas;
                         return __generator(this, function (_b) {
                             switch (_b.label) {
                                 case 0: return [4 /*yield*/, prompts({
@@ -109,18 +110,26 @@ function Randomizar() {
                                         case 0: return [3 /*break*/, 2];
                                         case 1: return [3 /*break*/, 3];
                                     }
-                                    return [3 /*break*/, 5];
+                                    return [3 /*break*/, 8];
                                 case 2:
                                     console.log('Finalizado');
-                                    return [3 /*break*/, 6];
-                                case 3: return [4 /*yield*/, prompts({
+                                    return [3 /*break*/, 9];
+                                case 3:
+                                    Apuesta = void 0;
+                                    _b.label = 4;
+                                case 4: return [4 /*yield*/, prompts({
                                         type: 'number',
                                         name: 'Valor',
                                         message: '¿Cuanto deseas apostar?'
                                     })];
-                                case 4:
+                                case 5:
                                     CuantoApuestas = _b.sent();
                                     Apuesta = CuantoApuestas.Valor;
+                                    _b.label = 6;
+                                case 6:
+                                    if (Apuesta > Presupuesto) return [3 /*break*/, 4];
+                                    _b.label = 7;
+                                case 7:
                                     console.log('Tu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
                                         console.log("You Win :)");
@@ -135,23 +144,23 @@ function Randomizar() {
                                         Presupuesto = Presupuesto - Apuesta;
                                     }
                                     LeDejamosJugar();
-                                    return [3 /*break*/, 6];
-                                case 5:
+                                    return [3 /*break*/, 9];
+                                case 8:
                                     console.log('Opcion invalida');
                                     decidir();
-                                    return [3 /*break*/, 6];
-                                case 6: return [2 /*return*/];
+                                    return [3 /*break*/, 9];
+                                case 9: return [2 /*return*/];
                             }
                         });
                     });
                 }
                 function LeDejamosJugar() {
-                    if (total_cartas != 1 && Presupuesto != 0) {
+                    if (total_cartas != 1) {
                         console.log('Te quedan: ', Presupuesto);
                         SacarCartas();
                     }
                     else {
-                        console.log('Se han acabado las cartas');
+                        console.log('Se han acabado las cartas ');
                     }
                 }
                 var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, ValorAleatorio3, carta_obtenida1, carta_obtenida2, carta_obtenida3, todos_los_valores_diferentes, caso1, caso2, todos_los_valores_iguales, total_cartas;

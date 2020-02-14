@@ -1,5 +1,5 @@
 import * as prompts from 'prompts'
-//import {DeseaApostar} from "./Desea Continuar/folder"
+
 async function Randomizar(){
     let Inicio =  await prompts({
         type: 'number',
@@ -76,9 +76,7 @@ async function Randomizar(){
 
             console.log("Tu primera carta es: ", carta_obtenida1);
             console.log("Tu segunda carta es: ", carta_obtenida2);
-            //DeseaApostar(carta_obtenida3);
            
-
             /*
             console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
             console.log('contadores:', contadores)
@@ -128,6 +126,8 @@ async function Randomizar(){
                 0
             )
             async function decidir(){
+
+                console.log("Te quedan: ", Presupuesto, "No apuestes mas de lo que puedas pagar");
                 let decision = await prompts({
                     type: 'number',
                     name: 'eleccion',
@@ -138,14 +138,17 @@ async function Randomizar(){
                         console.log('Finalizado')
                         break;
                     case 1 :
-                        
+
+                        let Apuesta
+                        do{
                         let CuantoApuestas = await prompts({
                             type: 'number',
                             name: 'Valor',
                             message: '¿Cuanto deseas apostar?'
                         })
 
-                        const Apuesta = CuantoApuestas.Valor
+                        Apuesta = CuantoApuestas.Valor
+                        }while(Apuesta > Presupuesto)
                         console.log('Tu apuesta es de: ', Apuesta);
 
                         
@@ -179,12 +182,12 @@ async function Randomizar(){
 
             function LeDejamosJugar(){
 
-                if(total_cartas != 1 && Presupuesto != 0){
+                if(total_cartas != 1 ){
 
                     console.log('Te quedan: ', Presupuesto);
                     SacarCartas() 
                 }else{
-                    console.log('Se han acabado las cartas')
+                    console.log('Se han acabado las cartas ')
                 }        
             }
             
