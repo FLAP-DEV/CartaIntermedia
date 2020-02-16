@@ -1,11 +1,13 @@
 import { trebolIzq, trebolDer } from "./trebol";
 
+
+//GRAFICA DE LOS SIMBOLOS
 const trebolUno = trebolDer("");
 const trebolDos = trebolIzq("");
 
 
 
-
+//NUMEROS LISTOS PARA USAR
 
 export function Dos(firstName: string) {
     return firstName + ('**********************\n'+trebolDos+'*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + trebolUno + ('**********************'));
