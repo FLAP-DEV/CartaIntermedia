@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "(tsc borrador.ts --target ES5 || echo) && node borrador.js"
+    "start": "(tsc borrador_trebol.ts --target ES5 || echo) && node borrador_trebol.js"
   },
   "repository": {
     "type": "git",
