@@ -1,7 +1,11 @@
 import { corazonDer, corazonIzq } from './corazon';
-
+ 
+//GRAFICAS DE LOS SIMBOLOS
 const corazonUno = corazonDer("");
 const corazonDos = corazonIzq("");
+
+
+//NUMEROS LISTOS PARA USAR
 
 export function DosC(firstName: string) {
     return firstName + ('**********************\n'+corazonDos+'*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + corazonUno + ('**********************'));

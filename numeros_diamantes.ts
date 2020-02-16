@@ -1,7 +1,12 @@
 import { diamanteDer, diamanteIzq } from './diamante';
 
+
+//GRAFICA DE LO SIMBOLOS
 const diamanteUno = diamanteDer("");
 const diamanteDos = diamanteIzq("");
+
+
+//NUMEROS LISTOS PARA USAR
 
 export function DosD(firstName: string) {
     return firstName + ('**********************\n'+diamanteDos+'*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + diamanteUno + ('**********************'));

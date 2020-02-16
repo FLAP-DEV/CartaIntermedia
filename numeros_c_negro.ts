@@ -1,7 +1,11 @@
 import { corazonNegroDer, corazonNegroIzq } from './corazon_negro';
 
+
+//GRAFICA DE LOS SIMBOLOS
 const corazonNegroUno = corazonNegroDer("");
 const corazonNegroDos = corazonNegroIzq("");
+
+//NUMEROS LISTOS PARA USAAR
 
 export function DosCN(firstName: string) {
     return firstName + ('**********************\n'+corazonNegroDos+'*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + corazonNegroUno + ('**********************'));
