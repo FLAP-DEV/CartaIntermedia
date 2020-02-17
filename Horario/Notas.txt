@@ -1,0 +1,10 @@
+HTML se usa para definir la estructura de una pagina web, mas no su diseño 
+<NOMBRE(esto marca el inicio de la etiqueta)>
+*
+*
+*
+</NOMBRE(Esto marca el final de la etiqueta)>
+Algunas solo utilizan el inicio de la etiqueta como BG(salto de linea) e img(poner una imagen)
+
+Para claves de seguridad el metodo window.crypto.getRandomValues
+envia numeros cryptografiados buscar informacion en API Web Crypto
