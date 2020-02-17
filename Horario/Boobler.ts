@@ -10,3 +10,9 @@ Listar los dias de la semana Enter para pasar al siguiente dia o escribimos los 
  tendran un rango de lunes a viernes y de 7 a 20 horas y el nombre de la materia en la posicion 
  Dia, hora señalada
 */
+
+
+
+
+
+
