@@ -116,15 +116,11 @@ function Randomizar() {
                                 case 3:
                                     Apuesta = void 0;
                                     _b.label = 4;
-                                case 4:
-                                    if (Presupuesto == 0) {
-                                        Randomizar();
-                                    }
-                                    return [4 /*yield*/, prompts({
-                                            type: 'number',
-                                            name: 'Valor',
-                                            message: '¿Cuanto deseas apostar?'
-                                        })];
+                                case 4: return [4 /*yield*/, prompts({
+                                        type: 'number',
+                                        name: 'Valor',
+                                        message: '¿Cuanto deseas apostar?'
+                                    })];
                                 case 5:
                                     CuantoApuestas = _b.sent();
                                     Apuesta = CuantoApuestas.Valor;
@@ -136,17 +132,19 @@ function Randomizar() {
                                     console.log('Tu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
                                         console.log("You Win :)");
-                                        console.log('Tu carta es ', carta_obtenida3);
+                                        console.log('Tu tercera carta era.... ', carta_obtenida3);
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else if (carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3) {
-                                        console.log("You Lose :) ");
-                                        console.log('Tu carta es ', carta_obtenida3);
+                                        // Arteaaaa aqui era un win
+                                        console.log("You Win :) ");
+                                        /////////////
+                                        console.log('Tu tercera carta era.... ', carta_obtenida3);
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else {
                                         console.log("You Lose :( ");
-                                        console.log('Tu carta es ', carta_obtenida3);
+                                        console.log('Tu tercera carta era.... ', carta_obtenida3);
                                         Presupuesto = Presupuesto - Apuesta;
                                     }
                                     LeDejamosJugar();
@@ -162,8 +160,13 @@ function Randomizar() {
                 }
                 function LeDejamosJugar() {
                     if (total_cartas != 1) {
-                        console.log('Te quedan: ', Presupuesto);
-                        SacarCartas();
+                        if (Presupuesto == 0) {
+                            Randomizar();
+                        }
+                        else {
+                            console.log('Te quedan: ', Presupuesto);
+                            SacarCartas();
+                        }
                     }
                     else {
                         console.log('Se han acabado las cartas ');
