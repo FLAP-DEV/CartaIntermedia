@@ -11,20 +11,27 @@ async function Randomizar(){
     let cartas = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     let contadores = [4,4,4,4,4,4,4,4,4,4,4,4,4]
     async function SacarCartas(){     
-        let numero_de_ceros = contadores.reduce(function(acumulador,valoractual){
+        let numero_de_ceros = contadores.reduce( // cuenta cuantos tipos de cartas, estan fuera de la baraja
+          function(acumulador,valoractual){
             if(valoractual == 0){
                 acumulador++
                 return acumulador
             }else{
                 return acumulador
             }
-        },0)
-        console.log(numero_de_ceros)
+           }
+        ,0
+        )
+        //console.log(numero_de_ceros)
         verificar_ceros()
         function verificar_ceros(){
-            if(contadores.some(function(valoractual){
+            if(
+                contadores.some(function(valoractual){
                 return valoractual == 0
-            })){
+                })
+
+              ){
+
                 let posicion_del_cero = contadores.indexOf(0)
                 switch(numero_de_ceros){
                     case 1 :
@@ -54,7 +61,8 @@ async function Randomizar(){
                 })*/
             }
         }
- 
+        //math.floor(x) nos envia el entero mas cercano, pero menor o igual  a x
+        //math.random(x) envia numeros de coma flotante de [0 a 1)
         let ValorAleatorio1 = Math.floor((contadores.length)*Math.random())
         let ValorAleatorio2 = Math.floor((contadores.length)*Math.random())
         let ValorAleatorio3 = Math.floor((contadores.length)*Math.random())
@@ -62,8 +70,9 @@ async function Randomizar(){
         let carta_obtenida2 = cartas[ValorAleatorio2]
         let carta_obtenida3 = cartas[ValorAleatorio3]
         
-        
+
         function eliminar_cartas(){
+            
             contadores[ValorAleatorio1]--
             contadores[ValorAleatorio2]--
             contadores[ValorAleatorio3]--
