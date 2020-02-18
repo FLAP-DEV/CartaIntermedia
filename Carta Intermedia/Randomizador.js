@@ -112,6 +112,7 @@ function Randomizar() {
                                     return [3 /*break*/, 8];
                                 case 2:
                                     console.log('Finalizado');
+                                    SacarCartas();
                                     return [3 /*break*/, 9];
                                 case 3:
                                     Apuesta = void 0;
@@ -179,7 +180,7 @@ function Randomizar() {
                 return __generator(this, function (_a) {
                     //    Aqui Arteagaaaa
                     if (Presupuesto == 0) {
-                        console.log('Juego Amistoso \n no es necesario que apuestes ');
+                        console.log('Juego Amistoso ');
                     }
                     numero_de_ceros = contadores.reduce(// cuenta cuantos tipos de cartas, estan fuera de la baraja
                     function (acumulador, valoractual) {
