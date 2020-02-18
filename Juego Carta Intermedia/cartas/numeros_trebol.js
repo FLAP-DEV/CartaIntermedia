@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var trebol_1 = require("./trebol");
+//GRAFICA DE LOS SIMBOLOS
 var trebolUno = trebol_1.trebolDer("");
 var trebolDos = trebol_1.trebolIzq("");
+//NUMEROS LISTOS PARA USAR
 function Dos(firstName) {
     return firstName + ('**********************\n' + trebolDos + '*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + trebolUno + ('**********************'));
 }

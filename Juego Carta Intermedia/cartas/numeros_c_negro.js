@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var corazon_negro_1 = require("./corazon_negro");
+//GRAFICA DE LOS SIMBOLOS
 var corazonNegroUno = corazon_negro_1.corazonNegroDer("");
 var corazonNegroDos = corazon_negro_1.corazonNegroIzq("");
+//NUMEROS LISTOS PARA USAAR
 function DosCN(firstName) {
     return firstName + ('**********************\n' + corazonNegroDos + '*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + corazonNegroUno + ('**********************'));
 }

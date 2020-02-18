@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var diamante_1 = require("./diamante");
+//GRAFICA DE LO SIMBOLOS
 var diamanteUno = diamante_1.diamanteDer("");
 var diamanteDos = diamante_1.diamanteIzq("");
+//NUMEROS LISTOS PARA USAR
 function DosD(firstName) {
     return firstName + ('**********************\n' + diamanteDos + '*      ********      *\n*     **********     *\n*    ************    *\n*    ****   *****    *\n*          *****     *\n*         *****      *\n*        *****       *\n*       *****        *\n*      **********    *\n*     ***********    *' + diamanteUno + ('**********************'));
 }
