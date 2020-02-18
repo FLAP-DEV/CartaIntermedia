@@ -1,0 +1,14 @@
+{
+  "name": "definitivo",
+  "version": "1.0.0",
+  "description": "Este es el definitivo ya que aqui unimos todo",
+  "main": "index.js",
+  "scripts": {
+    "start": "(tsc 2-Randomizador.ts --target ES5 || echo ) && node 2-Randomizador.js"
+  },
+  "author": "David Arteaga, Ariel Pillajo, Adrian Coloma, Jenny Llano",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.3.1"
+  }
+}
