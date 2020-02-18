@@ -82,8 +82,10 @@ function Randomizar() {
                     var total_cartas = contadores.reduce(function (acumulador, valoractual) {
                         return acumulador + valoractual;
                     }, 0);
-                    console.log("\nTu primera carta es: \n", NumPorCartas_1.convertirCartas(carta_obtenida1));
-                    console.log("Tu segunda carta es: \n", NumPorCartas_1.convertirCartas(carta_obtenida2));
+                    //David: Aqui le imprimo en pantalla las cartas que hizo Jenny, para esto cree la funcion convertir cartas
+                    /* console.log("\nTu primera carta es:\n", convertirCartas(carta_obtenida1));
+                     console.log("Tu segunda carta es: \n", convertirCartas(carta_obtenida2)); */
+                    console.log("\nTu primera carta es:                                          Tu segunda carta es:\n\" " + NumPorCartas_1.convertirCartas(carta_obtenida1) + "   sd              " + NumPorCartas_1.convertirCartas(carta_obtenida2));
                     /*
                     console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
                     console.log('contadores:', contadores)
@@ -132,15 +134,15 @@ function Randomizar() {
                                 case 7:
                                     console.log('Tu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
-                                        console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!!! :) *\n\t\t********************** ");
+                                        console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else if (carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3) {
-                                        console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!!! :) *\n\t\t********************** ");
+                                        console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else {
-                                        console.log("\n\t\t**********************\n\t\t* YOU LOSE!!!!!!!!! :( *\n\t\t********************** ");
+                                        console.log("\n\t\t**********************\n\t\t* YOU LOSE!!!!!!! :( *\n\t\t********************** ");
                                         Presupuesto = Presupuesto - Apuesta;
                                     }
                                     LeDejamosJugar();
