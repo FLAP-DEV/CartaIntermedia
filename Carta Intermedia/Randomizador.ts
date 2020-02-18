@@ -172,8 +172,8 @@ async function Randomizar(){
 
                         // Aqui Arteagaa
 
-                        }while(Apuesta > Presupuesto && Apuesta < 0)
-                        
+                        }while(Apuesta > Presupuesto || Apuesta < 0)
+
                        /////////
                         console.log('Tu apuesta es de: ', Apuesta);
 
