@@ -141,6 +141,10 @@ async function Randomizar(){
 
                         let Apuesta
                         do{
+
+                            if(Presupuesto == 0){
+                                Randomizar();
+                            }
                         let CuantoApuestas = await prompts({
                             type: 'number',
                             name: 'Valor',
@@ -149,6 +153,7 @@ async function Randomizar(){
 
                         Apuesta = CuantoApuestas.Valor
                         }while(Apuesta > Presupuesto)
+                        
                         console.log('Tu apuesta es de: ', Apuesta);
 
                         

@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var prompts = require("prompts");
-//import {DeseaApostar} from "./Desea Continuar/folder"
 function Randomizar() {
     return __awaiter(this, void 0, void 0, function () {
         function SacarCartas() {
@@ -84,8 +83,6 @@ function Randomizar() {
                     }, 0);
                     console.log("Tu primera carta es: ", carta_obtenida1);
                     console.log("Tu segunda carta es: ", carta_obtenida2);
-                    console.log("Tu tercera carta es: ", carta_obtenida3);
-                    //DeseaApostar(carta_obtenida3);
                     /*
                     console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
                     console.log('contadores:', contadores)
@@ -98,11 +95,13 @@ function Randomizar() {
                         var decision, _a, Apuesta, CuantoApuestas;
                         return __generator(this, function (_b) {
                             switch (_b.label) {
-                                case 0: return [4 /*yield*/, prompts({
-                                        type: 'number',
-                                        name: 'eleccion',
-                                        message: 'Desea Apostar: \n 1 -> Si 0 -> No'
-                                    })];
+                                case 0:
+                                    console.log("Te quedan: ", Presupuesto, "No apuestes mas de lo que puedas pagar");
+                                    return [4 /*yield*/, prompts({
+                                            type: 'number',
+                                            name: 'eleccion',
+                                            message: 'Desea Apostar: \n 1 -> Si 0 -> No'
+                                        })];
                                 case 1:
                                     decision = _b.sent();
                                     _a = decision.eleccion;
@@ -117,11 +116,15 @@ function Randomizar() {
                                 case 3:
                                     Apuesta = void 0;
                                     _b.label = 4;
-                                case 4: return [4 /*yield*/, prompts({
-                                        type: 'number',
-                                        name: 'Valor',
-                                        message: '¿Cuanto deseas apostar?'
-                                    })];
+                                case 4:
+                                    if (Presupuesto == 0) {
+                                        Randomizar();
+                                    }
+                                    return [4 /*yield*/, prompts({
+                                            type: 'number',
+                                            name: 'Valor',
+                                            message: '¿Cuanto deseas apostar?'
+                                        })];
                                 case 5:
                                     CuantoApuestas = _b.sent();
                                     Apuesta = CuantoApuestas.Valor;
