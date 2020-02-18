@@ -150,10 +150,11 @@ async function Randomizar(){
 
                         let Apuesta
                         do{
-
+///// Aquiiiiii Arteaga solo añade esto
                             if(Presupuesto == 0){
                                 Randomizar();
                             }
+/////////////////// y se acabo
                         let CuantoApuestas = await prompts({
                             type: 'number',
                             name: 'Valor',
@@ -162,23 +163,26 @@ async function Randomizar(){
 
                         Apuesta = CuantoApuestas.Valor
                         }while(Apuesta > Presupuesto)
-                        
+
                         console.log('Tu apuesta es de: ', Apuesta);
 
                         
                         if(carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3){
                             console.log("You Win :)");
+                            console.log('Tu carta es ', carta_obtenida3);
                             Presupuesto = Presupuesto + Apuesta;
                             
 
 
                         }else if(carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3){
                             console.log("You Lose :) ");
+                            console.log('Tu carta es ', carta_obtenida3);
                             Presupuesto = Presupuesto + Apuesta;
                        
 
                         }else{
                             console.log("You Lose :( ");
+                            console.log('Tu carta es ', carta_obtenida3);
                             Presupuesto = Presupuesto - Apuesta;
                          
                         }

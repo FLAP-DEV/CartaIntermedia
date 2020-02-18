@@ -136,14 +136,17 @@ function Randomizar() {
                                     console.log('Tu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
                                         console.log("You Win :)");
+                                        console.log('Tu carta es ', carta_obtenida3);
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else if (carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3) {
                                         console.log("You Lose :) ");
+                                        console.log('Tu carta es ', carta_obtenida3);
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else {
                                         console.log("You Lose :( ");
+                                        console.log('Tu carta es ', carta_obtenida3);
                                         Presupuesto = Presupuesto - Apuesta;
                                     }
                                     LeDejamosJugar();
@@ -168,7 +171,8 @@ function Randomizar() {
                 }
                 var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, ValorAleatorio3, carta_obtenida1, carta_obtenida2, carta_obtenida3, todos_los_valores_diferentes, caso1, caso2, todos_los_valores_iguales, total_cartas;
                 return __generator(this, function (_a) {
-                    numero_de_ceros = contadores.reduce(function (acumulador, valoractual) {
+                    numero_de_ceros = contadores.reduce(// cuenta cuantos tipos de cartas, estan fuera de la baraja
+                    function (acumulador, valoractual) {
                         if (valoractual == 0) {
                             acumulador++;
                             return acumulador;
@@ -177,7 +181,7 @@ function Randomizar() {
                             return acumulador;
                         }
                     }, 0);
-                    console.log(numero_de_ceros);
+                    //console.log(numero_de_ceros)
                     verificar_ceros();
                     ValorAleatorio1 = Math.floor((contadores.length) * Math.random());
                     ValorAleatorio2 = Math.floor((contadores.length) * Math.random());
