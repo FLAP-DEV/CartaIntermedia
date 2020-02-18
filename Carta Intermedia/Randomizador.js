@@ -126,9 +126,10 @@ function Randomizar() {
                                     Apuesta = CuantoApuestas.Valor;
                                     _b.label = 6;
                                 case 6:
-                                    if (Apuesta > Presupuesto) return [3 /*break*/, 4];
+                                    if (Apuesta > Presupuesto || Apuesta < 0) return [3 /*break*/, 4];
                                     _b.label = 7;
                                 case 7:
+                                    /////////
                                     console.log('Tu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
                                         console.log("You Win :)");
@@ -159,6 +160,7 @@ function Randomizar() {
                     });
                 }
                 function LeDejamosJugar() {
+                    /// Aqui Arteagaaaaaaaa
                     if (total_cartas != 1) {
                         if (Presupuesto == 0) {
                             Randomizar();
@@ -167,6 +169,7 @@ function Randomizar() {
                             console.log('Te quedan: ', Presupuesto);
                             SacarCartas();
                         }
+                        ///////////////////
                     }
                     else {
                         console.log('Se han acabado las cartas ');
@@ -174,6 +177,10 @@ function Randomizar() {
                 }
                 var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, ValorAleatorio3, carta_obtenida1, carta_obtenida2, carta_obtenida3, todos_los_valores_diferentes, caso1, caso2, todos_los_valores_iguales, total_cartas;
                 return __generator(this, function (_a) {
+                    //    Aqui Arteagaaaa
+                    if (Presupuesto == 0) {
+                        console.log('Juego Amistoso \n no es necesario que apuestes ');
+                    }
                     numero_de_ceros = contadores.reduce(// cuenta cuantos tipos de cartas, estan fuera de la baraja
                     function (acumulador, valoractual) {
                         if (valoractual == 0) {

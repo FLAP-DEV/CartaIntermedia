@@ -16,7 +16,7 @@ async function Randomizar(){
 
         //    Aqui Arteagaaaa
         if(Presupuesto == 0){
-            console.log('Juego Amistoso \n no es necesario que apuestes ');
+            console.log('Juego Amistoso ');
 
         }
         ///////////////
@@ -152,6 +152,7 @@ async function Randomizar(){
                     name: 'eleccion',
                     message: 'Desea Apostar: \n 1 -> Si 0 -> No'
                 })
+
                 switch(decision.eleccion){
                     case 0 :
                         console.log('Finalizado')
@@ -175,6 +176,7 @@ async function Randomizar(){
                         }while(Apuesta > Presupuesto || Apuesta < 0)
 
                        /////////
+
                         console.log('Tu apuesta es de: ', Apuesta);
 
                         
