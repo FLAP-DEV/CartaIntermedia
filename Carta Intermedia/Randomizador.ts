@@ -152,8 +152,8 @@ async function Randomizar(){
                     name: 'eleccion',
                     /// Aui Arteaga
 
-                    message: 'Jugamos: \n 1 -> Si 0 -> No'
-                    
+                    message: ' Jugamos? \n 1 -> Si 0 -> No'
+
                     ////////
                 })
 
