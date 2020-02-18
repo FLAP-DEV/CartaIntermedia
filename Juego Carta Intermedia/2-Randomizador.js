@@ -85,6 +85,7 @@ function Randomizar() {
                     //David: Aqui le imprimo en pantalla las cartas que hizo Jenny, para esto cree la funcion convertir cartas
                     console.log("\nTu primera carta es:\n", NumPorCartas_1.convertirCartas(carta_obtenida1));
                     console.log("Tu segunda carta es: \n", NumPorCartas_1.convertirCartas(carta_obtenida2));
+                    console.log("La carta que te salio es: \n", NumPorCartas_1.convertirCartas(carta_obtenida3));
                     /*
                     console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
                     console.log('contadores:', contadores)

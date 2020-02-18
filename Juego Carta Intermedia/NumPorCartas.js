@@ -7,11 +7,10 @@ var numeros_trebol_1 = require("./cartas/numeros_trebol");
 //Cambiar los numeros del arreglo de cartas por los strings de cada carta
 function convertirCartas(Ingresanumero) {
     var lacartaElegida;
-    var min = Math.ceil(1);
-    var max = Math.floor(4);
+    var min = Math.ceil(1); //CON ESTO, DEFINO NUMEROS ALEATORIOS DEL 1 AL 4, ESTO LO HICE PARA QUE SALGAN ALEATORIAS
+    var max = Math.floor(4); //LAS CARTAS, ES DECIR, SI SALE 1: ME SACA CORAZON, 2: CORAZON NEGRO, 3: dIAMANTE, 4:tREBOL
     var respuesta = Math.floor(Math.random() * (1 + max - min) + min);
-    console.log('\n\tRespuesta: ', respuesta);
-    switch (Ingresanumero) {
+    switch (Ingresanumero) { //OBVIAMENTE, EL INGRESANUMERO ES PARA SABER QUE NUMERO DEBE IMPRIMIR EN PANTALLA
         case 1: //AS
             if (respuesta == 1) {
                 lacartaElegida = numeros_corazon_1.AsC(""); //Corazon
