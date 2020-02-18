@@ -159,6 +159,7 @@ async function Randomizar(){
                     case 1 :
 
                         let Apuesta
+
                         do{
 
                         let CuantoApuestas = await prompts({
@@ -168,8 +169,12 @@ async function Randomizar(){
                         })
 
                         Apuesta = CuantoApuestas.Valor
-                        }while(Apuesta > Presupuesto)
 
+                        // Aqui Arteagaa
+
+                        }while(Apuesta > Presupuesto && Apuesta < 0)
+                        
+                       /////////
                         console.log('Tu apuesta es de: ', Apuesta);
 
                         
@@ -186,7 +191,7 @@ async function Randomizar(){
                             console.log("You Win :) ");
 
                             /////////////
-                            
+
                             console.log('Tu tercera carta era.... ', carta_obtenida3);
                             Presupuesto = Presupuesto + Apuesta;
                        
