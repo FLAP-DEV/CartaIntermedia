@@ -159,7 +159,8 @@ async function Randomizar(){
 
                 switch(decision.eleccion){
                     case 0 :
-                        console.log('Finalizado')
+
+                        LeDejamosJugar();
                         break;
                     case 1 :
 

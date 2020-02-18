@@ -100,7 +100,9 @@ function Randomizar() {
                                     return [4 /*yield*/, prompts({
                                             type: 'number',
                                             name: 'eleccion',
-                                            message: 'Desea Apostar: \n 1 -> Si 0 -> No'
+                                            /// Aui Arteaga
+                                            message: ' Jugamos? \n 1 -> Si 0 -> No'
+                                            ////////
                                         })];
                                 case 1:
                                     decision = _b.sent();
@@ -111,8 +113,7 @@ function Randomizar() {
                                     }
                                     return [3 /*break*/, 8];
                                 case 2:
-                                    console.log('Finalizado');
-                                    SacarCartas();
+                                    LeDejamosJugar();
                                     return [3 /*break*/, 9];
                                 case 3:
                                     Apuesta = void 0;
