@@ -1,0 +1,19 @@
+{
+  "name": "cartaintermedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "(tsc borrador_trebol.ts --target ES5 || echo) && node borrador_trebol.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FLAP-DEV/CartaIntermedia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FLAP-DEV/CartaIntermedia/issues"
+  },
+  "homepage": "https://github.com/FLAP-DEV/CartaIntermedia#readme"
+}
