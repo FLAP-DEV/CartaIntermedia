@@ -155,11 +155,7 @@ async function Randomizar(){
 
                 switch(decision.eleccion){
                     case 0 :
-/// Aqui Tambien Arteaga
-
-                        SacarCartas();
-                        
-/////////
+                        console.log('Finalizado')
                         break;
                     case 1 :
 
