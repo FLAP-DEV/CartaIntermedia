@@ -2,6 +2,8 @@ import * as prompts from 'prompts'
 import { convertirCartas } from './NumPorCartas'
 
 async function Randomizar(){
+
+
     let Inicio =  await prompts({
         type: 'number',
         name: 'Tengo',
@@ -12,6 +14,14 @@ async function Randomizar(){
     let cartas = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     let contadores = [4,4,4,4,4,4,4,4,4,4,4,4,4]
     async function SacarCartas(){     
+
+        //    Aqui Arteagaaaa
+        if(Presupuesto == 0){
+            console.log('Juego Amistoso ');
+
+        }
+        ///////////////
+
         let numero_de_ceros = contadores.reduce( // cuenta cuantos tipos de cartas, estan fuera de la baraja
           function(acumulador,valoractual){
             if(valoractual == 0){
@@ -83,11 +93,9 @@ async function Randomizar(){
                 },
                 0
             )
-        //David: Aqui le imprimo en pantalla las cartas que hizo Jenny, para esto cree la funcion convertir cartas
-            console.log("\nTu primera carta es:\n", convertirCartas(carta_obtenida1));
-            console.log("Tu segunda carta es: \n", convertirCartas(carta_obtenida2)); 
-            console.log("La carta que te salio es: \n", convertirCartas(carta_obtenida3));
-            
+
+            console.log("Tu primera carta es: \n", convertirCartas(carta_obtenida1));
+            console.log("Tu segunda carta es:\n ", convertirCartas(carta_obtenida2));
            
             /*
             console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
@@ -143,16 +151,19 @@ async function Randomizar(){
                 let decision = await prompts({
                     type: 'number',
                     name: 'eleccion',
-                    message: 'Desea Apostar?: \n 1 -> Si\n 0 -> No'
+                    message: '\nDesea Apostar?: \n 1 -> Si \n0 -> No'
                 })
+
                 switch(decision.eleccion){
                     case 0 :
-                        console.log('Finalizado')
+                        console.log('\nFinalizado')
                         break;
                     case 1 :
 
                         let Apuesta
+
                         do{
+
                         let CuantoApuestas = await prompts({
                             type: 'number',
                             name: 'Valor',
@@ -160,23 +171,37 @@ async function Randomizar(){
                         })
 
                         Apuesta = CuantoApuestas.Valor
-                        }while(Apuesta > Presupuesto)
-                        console.log('Tu apuesta es de: ', Apuesta);
+
+                        // Aqui Arteagaa
+
+                        }while(Apuesta > Presupuesto || Apuesta < 0)
+
+                       /////////
+
+                        console.log('\nTu apuesta es de: ', Apuesta);
 
                         
                         if(carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3){
                             console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
+                            console.log('\nTu tercera carta era....\n ', convertirCartas(carta_obtenida3));
                             Presupuesto = Presupuesto + Apuesta;
                             
 
 
                         }else if(carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3){
+                            // Arteaaaa aqui era un win
+
                             console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
+
+                            /////////////
+
+                            console.log('\nTu tercera carta era.... \n', convertirCartas(carta_obtenida3));
                             Presupuesto = Presupuesto + Apuesta;
                        
 
                         }else{
                             console.log("\n\t\t**********************\n\t\t* YOU LOSE!!!!!!! :( *\n\t\t********************** ");
+                            console.log('\nTu tercera carta era....\n ', convertirCartas(carta_obtenida3));
                             Presupuesto = Presupuesto - Apuesta;
                          
                         }
@@ -193,11 +218,19 @@ async function Randomizar(){
             }
 
             function LeDejamosJugar(){
-
+/// Aqui Arteagaaaaaaaa
                 if(total_cartas != 1 ){
 
+                   if(Presupuesto == 0){
+
+                      Randomizar();
+
+                   }else{
                     console.log('\nTe quedan: ', Presupuesto);
-                    SacarCartas() 
+                    SacarCartas()
+                   } 
+///////////////////
+
                 }else{
                     console.log('\nSe han acabado las cartas ')
                 }        

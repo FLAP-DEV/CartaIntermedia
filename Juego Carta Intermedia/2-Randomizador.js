@@ -82,10 +82,8 @@ function Randomizar() {
                     var total_cartas = contadores.reduce(function (acumulador, valoractual) {
                         return acumulador + valoractual;
                     }, 0);
-                    //David: Aqui le imprimo en pantalla las cartas que hizo Jenny, para esto cree la funcion convertir cartas
-                    console.log("\nTu primera carta es:\n", NumPorCartas_1.convertirCartas(carta_obtenida1));
-                    console.log("Tu segunda carta es: \n", NumPorCartas_1.convertirCartas(carta_obtenida2));
-                    console.log("La carta que te salio es: \n", NumPorCartas_1.convertirCartas(carta_obtenida3));
+                    console.log("Tu primera carta es: \n", NumPorCartas_1.convertirCartas(carta_obtenida1));
+                    console.log("Tu segunda carta es:\n ", NumPorCartas_1.convertirCartas(carta_obtenida2));
                     /*
                     console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
                     console.log('contadores:', contadores)
@@ -103,7 +101,7 @@ function Randomizar() {
                                     return [4 /*yield*/, prompts({
                                             type: 'number',
                                             name: 'eleccion',
-                                            message: 'Desea Apostar?: \n 1 -> Si\n 0 -> No'
+                                            message: '\nDesea Apostar?: \n 1 -> Si \n0 -> No'
                                         })];
                                 case 1:
                                     decision = _b.sent();
@@ -114,7 +112,7 @@ function Randomizar() {
                                     }
                                     return [3 /*break*/, 8];
                                 case 2:
-                                    console.log('Finalizado');
+                                    console.log('\nFinalizado');
                                     return [3 /*break*/, 9];
                                 case 3:
                                     Apuesta = void 0;
@@ -129,20 +127,26 @@ function Randomizar() {
                                     Apuesta = CuantoApuestas.Valor;
                                     _b.label = 6;
                                 case 6:
-                                    if (Apuesta > Presupuesto) return [3 /*break*/, 4];
+                                    if (Apuesta > Presupuesto || Apuesta < 0) return [3 /*break*/, 4];
                                     _b.label = 7;
                                 case 7:
-                                    console.log('Tu apuesta es de: ', Apuesta);
+                                    /////////
+                                    console.log('\nTu apuesta es de: ', Apuesta);
                                     if (carta_obtenida1 > carta_obtenida3 && carta_obtenida2 < carta_obtenida3) {
                                         console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
+                                        console.log('\nTu tercera carta era....\n ', NumPorCartas_1.convertirCartas(carta_obtenida3));
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else if (carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3) {
+                                        // Arteaaaa aqui era un win
                                         console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
+                                        /////////////
+                                        console.log('\nTu tercera carta era.... \n', NumPorCartas_1.convertirCartas(carta_obtenida3));
                                         Presupuesto = Presupuesto + Apuesta;
                                     }
                                     else {
                                         console.log("\n\t\t**********************\n\t\t* YOU LOSE!!!!!!! :( *\n\t\t********************** ");
+                                        console.log('\nTu tercera carta era....\n ', NumPorCartas_1.convertirCartas(carta_obtenida3));
                                         Presupuesto = Presupuesto - Apuesta;
                                     }
                                     LeDejamosJugar();
@@ -157,9 +161,16 @@ function Randomizar() {
                     });
                 }
                 function LeDejamosJugar() {
+                    /// Aqui Arteagaaaaaaaa
                     if (total_cartas != 1) {
-                        console.log('\nTe quedan: ', Presupuesto);
-                        SacarCartas();
+                        if (Presupuesto == 0) {
+                            Randomizar();
+                        }
+                        else {
+                            console.log('\nTe quedan: ', Presupuesto);
+                            SacarCartas();
+                        }
+                        ///////////////////
                     }
                     else {
                         console.log('\nSe han acabado las cartas ');
@@ -167,6 +178,10 @@ function Randomizar() {
                 }
                 var numero_de_ceros, ValorAleatorio1, ValorAleatorio2, ValorAleatorio3, carta_obtenida1, carta_obtenida2, carta_obtenida3, todos_los_valores_diferentes, caso1, caso2, todos_los_valores_iguales, total_cartas;
                 return __generator(this, function (_a) {
+                    //    Aqui Arteagaaaa
+                    if (Presupuesto == 0) {
+                        console.log('Juego Amistoso ');
+                    }
                     numero_de_ceros = contadores.reduce(// cuenta cuantos tipos de cartas, estan fuera de la baraja
                     function (acumulador, valoractual) {
                         if (valoractual == 0) {
