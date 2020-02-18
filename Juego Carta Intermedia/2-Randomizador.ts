@@ -15,12 +15,12 @@ async function Randomizar(){
     let contadores = [4,4,4,4,4,4,4,4,4,4,4,4,4]
     async function SacarCartas(){     
 
-        //    Aqui Arteagaaaa
+        
         if(Presupuesto == 0){
             console.log('Juego Amistoso ');
 
         }
-        ///////////////
+  
 
         let numero_de_ceros = contadores.reduce( // cuenta cuantos tipos de cartas, estan fuera de la baraja
           function(acumulador,valoractual){
@@ -33,7 +33,7 @@ async function Randomizar(){
            }
         ,0
         )
-        //console.log(numero_de_ceros)
+       
         verificar_ceros()
         function verificar_ceros(){
             if(
@@ -97,12 +97,6 @@ async function Randomizar(){
             console.log("Tu primera carta es: \n", convertirCartas(carta_obtenida1));
             console.log("Tu segunda carta es:\n ", convertirCartas(carta_obtenida2));
            
-            /*
-            console.log('cartas obtenidas:',carta_obtenida1, carta_obtenida2,carta_obtenida3)
-            console.log('contadores:', contadores)
-            console.log('cartas:    ', cartas)
-            console.log("Total:", total_cartas)
-            */
         }
         const todos_los_valores_diferentes = ValorAleatorio1 != ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3 && ValorAleatorio2 != ValorAleatorio3
         const caso1 = (ValorAleatorio1 == ValorAleatorio2 && ValorAleatorio1 != ValorAleatorio3) || 
@@ -151,12 +145,14 @@ async function Randomizar(){
                 let decision = await prompts({
                     type: 'number',
                     name: 'eleccion',
-                    message: '\nDesea Apostar?: \n 1 -> Si \n0 -> No'
+                    message: '\n Jugamos?: \n 1 -> Si \n0 -> No'
                 })
 
                 switch(decision.eleccion){
                     case 0 :
-                        console.log('\nFinalizado')
+
+                        console.log('\n');
+                        LeDejamosJugar();
                         break;
                     case 1 :
 
@@ -172,11 +168,11 @@ async function Randomizar(){
 
                         Apuesta = CuantoApuestas.Valor
 
-                        // Aqui Arteagaa
+                    
 
                         }while(Apuesta > Presupuesto || Apuesta < 0)
 
-                       /////////
+                    
 
                         console.log('\nTu apuesta es de: ', Apuesta);
 
@@ -189,11 +185,10 @@ async function Randomizar(){
 
 
                         }else if(carta_obtenida1 < carta_obtenida3 && carta_obtenida2 > carta_obtenida3){
-                            // Arteaaaa aqui era un win
+        
 
                             console.log("\n\t\t**********************\n\t\t* YOU WIN!!!!!!!! :) *\n\t\t********************** ");
 
-                            /////////////
 
                             console.log('\nTu tercera carta era.... \n', convertirCartas(carta_obtenida3));
                             Presupuesto = Presupuesto + Apuesta;
@@ -218,7 +213,7 @@ async function Randomizar(){
             }
 
             function LeDejamosJugar(){
-/// Aqui Arteagaaaaaaaa
+
                 if(total_cartas != 1 ){
 
                    if(Presupuesto == 0){
@@ -229,7 +224,6 @@ async function Randomizar(){
                     console.log('\nTe quedan: ', Presupuesto);
                     SacarCartas()
                    } 
-///////////////////
 
                 }else{
                     console.log('\nSe han acabado las cartas ')
