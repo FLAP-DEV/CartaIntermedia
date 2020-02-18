@@ -150,7 +150,11 @@ async function Randomizar(){
                 let decision = await prompts({
                     type: 'number',
                     name: 'eleccion',
-                    message: 'Desea Apostar: \n 1 -> Si 0 -> No'
+                    /// Aui Arteaga
+
+                    message: 'Jugamos: \n 1 -> Si 0 -> No'
+                    
+                    ////////
                 })
 
                 switch(decision.eleccion){
