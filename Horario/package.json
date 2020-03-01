@@ -1,0 +1,14 @@
+{
+  "name": "horario",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "(tsc Boobler.ts --target ES5 || echo) && node Boobler.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.3.1"
+  }
+}

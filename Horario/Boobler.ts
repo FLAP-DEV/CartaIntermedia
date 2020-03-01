@@ -23,10 +23,119 @@ es decir puedo tener horas seguidas todos los dias pero no es practico tener un 
 y la otra en la noche es necesario cuantificar un resultado final que indique que opcion tomar segun estos parametros 
 que tendran un grado de importancia mas elevado dependiendo el numero de horas huecas seguidas en el mismo dia
 
+Pasos
+
+1.crear un arreglo que almacene todas las estructuras 
+2.diferenciar las materias por un Id ya que pueden haber dos materias con el mismo nombre y distinto horario
+  esto ayuda a enlazar o relacionar los datos que luego se ingresaran en plantilla por cuestiones de elegancia
+3.el usuario nos facilitara las filas y columnas de plantilla sin saberlo
 
 
 */
 
 
+import * as prompts from 'prompts';
+import {materia} from './interfaces/materia'
+
+async function Principal(){
+
+const Plantilla = [  ['Horario','   Lunes  ','  Martes ' ,'Miercoles ','  Jueves  ',  'Viernes '],
+                     ['7 a 8'  ,'Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['8 a 9'  ,'Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['9 a 10' ,'Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['10 a 11','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['11 a 12','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['12 a 13','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['13 a 14','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['14 a 15','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['15 a 16','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['17 a 18','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['18 a 19','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
+                     ['19 a 20','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre']  
+                  ]
+
+Plantilla.forEach(
+    function(valorActual){
+
+        console.log(valorActual);
+
+    }
+);
+
+const ListadeMateriasIngresadas: materia[] = [];
 
 
+
+async function CreandoMateria(){
+   let NoEsEntero;
+   let NoEstaEnHorarioPermitido;
+   let opcionInvalida;
+
+
+   do{
+      const FilaMateria = await prompts({
+        type: "number",
+        name: "Dia",
+        message: "'Selecciona el dia de clases \n Lunes --> 1 \n Martes --> 2 \n Miercoles --> 3 \n Jueves --> 4 \n Viernes --> 5 \n Siguiente --> 6'"
+      });
+     NoEsEntero = Math.floor(FilaMateria.Dia) != FilaMateria.Dia;
+     opcionInvalida = FilaMateria.Dia < 1 || FilaMateria.Dia > 7;
+    }while(NoEsEntero || opcionInvalida);
+
+   do{
+      const ColumnaMateria = await prompts({
+        type: "number",
+        name: "HoradeInicio",
+        message: "Hora de Inicio: " 
+      },
+      {
+        type:"number",
+        name: "HoradeSalida",
+        message: "Hora de Salida: "
+      });
+
+      const NoEntero1 = Math.floor(ColumnaMateria[0].HoradeInicio) != ColumnaMateria[0].HoradeInicio; 
+      const NoEntero2 = Math.floor(ColumnaMateria[1].HoradeSalida) != ColumnaMateria[1].HoradeSalida; 
+      const FueradeRango1 = ColumnaMateria[0].HoradeInicio < 7 && ColumnaMateria[1].HoradeInicio > 20;
+      const FueradeRango2 = ColumnaMateria[1].HoradeSalida < 7 && ColumnaMateria[1].HoradeSalida > 20;
+      const InicioDudoso = ColumnaMateria[0] >= ColumnaMateria[1];
+      NoEsEntero = NoEntero1 ||  NoEntero2;
+      NoEstaEnHorarioPermitido = FueradeRango1 || FueradeRango2 || InicioDudoso 
+
+    }while(NoEsEntero || NoEstaEnHorarioPermitido);
+
+    const MateriaGuardada ={
+        
+    }
+
+    const MismaMateria = await prompts(
+    {
+        type: "number",
+        name: "NuevoHorarioMismaMateria",
+        message: "Existe otro horario disponible para esta materia? \n Si --> 1 \n No --> 0"
+    });
+
+switch(MismaMateria.NuevoHorarioMismaMateria){
+
+    case 0:
+
+       IngresarNuevaMateria();
+        
+    break;
+
+    case 1:
+
+      
+       
+    break;
+}
+
+}
+
+function IngresarNuevaMateria(){
+    CreandoMateria();
+}
+
+IngresarNuevaMateria();
+}
+Principal();
