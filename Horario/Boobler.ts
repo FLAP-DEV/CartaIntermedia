@@ -65,17 +65,13 @@ Plantilla.forEach(
 );
 */
 
-
-
 const ListadeMateriasIngresadas: materia[] = [];
-
-
+let NoEsEntero;
+let NoEstaEnHorarioPermitido;
+let opcionInvalida;
+let contador = 0;
 
 async function CreandoMateria(){
-
-   let NoEsEntero;
-   let NoEstaEnHorarioPermitido;
-   let opcionInvalida;
 
     const nombreMateria = await prompts({
           type: "string",
@@ -83,23 +79,40 @@ async function CreandoMateria(){
           message: "Dame el nombre de la Materia que deseas Ingresar "
     });
 
+    IngresarHorarios(nombreMateria.Materia);
+}
 
+async function IngresarHorarios (nombreMateria){
 
-
+    let ElDia;
+    let LaHoraInicial;
+    let LaHoraFinal;
 
     do{
         const FilaMateria = await prompts({
            type: "number",
            name: "Dia",
-           message: "'Selecciona el dia de clases' \n Lunes --> 1 \n Martes --> 2 \n Miercoles --> 3 \n Jueves --> 4 \n Viernes --> 5"
+           message: "'Selecciona el dia de clases' \n Lunes --> 1 \n Martes --> 2 \n Miercoles --> 3 \n Jueves --> 4 \n Viernes --> 5 \n No hay mas dias que ingresar --> 0"
         });
 
         NoEsEntero = Math.floor(FilaMateria.Dia) != FilaMateria.Dia;
-        opcionInvalida = FilaMateria.Dia < 1 || FilaMateria.Dia > 5;
+        opcionInvalida = FilaMateria.Dia < 0 || FilaMateria.Dia > 5;
+
+        if(FilaMateria.Dia == 0){
+
+            const OtroHorario = await prompts({
+                type: "number",
+                name: "Tomar datos",
+                message: "Existe otro horario para esta materia? \n si --> 1 \n no --> 0 "
+            });  
+        }
+ 
+    ElDia = FilaMateria
 
     }while(NoEsEntero || opcionInvalida);
     
     do{
+
       const ColumnaMateria = await prompts({
         type: "number",
         name: "HoradeInicio",
@@ -118,41 +131,25 @@ async function CreandoMateria(){
       const InicioDudoso = ColumnaMateria[0].HoradeInicio >= ColumnaMateria[1].HoradeSalida;
       NoEsEntero = NoEnteroHoradeInicio ||  NoEnteroHoradeSalida;
       NoEstaEnHorarioPermitido = FueradeRangoHoradeInicio || FueradeRangoHoradeSalida || InicioDudoso 
-
+    
+    LaHoraInicial = ColumnaMateria[0].HoradeInicio;
+    LaHoraFinal = ColumnaMateria[1].HoradeSalida
     }while(NoEsEntero || NoEstaEnHorarioPermitido);
 
-    const MateriaGuardada ={
-        
+    const NuevaMateria: materia = {
+        id: contador,
+        materia: nombreMateria,
+        Día: ElDia,
+        HoraDeInicio: LaHoraInicial,
+        HoraDeSalida: LaHoraFinal
     }
 
-    const MismaMateria = await prompts(
-    {
-        type: "number",
-        name: "NuevoHorarioMismaMateria",
-        message: "Existe otro horario disponible para esta materia? \n Si --> 1 \n No --> 0"
-    });
-
-switch(MismaMateria.NuevoHorarioMismaMateria){
-
-    case 0:
-
-       IngresarNuevaMateria();
-        
-    break;
-
-    case 1:
-
-      
-       
-    break;
+    ListadeMateriasIngresadas.push(NuevaMateria);
+    console.log(NuevaMateria);
+    console.log(ListadeMateriasIngresadas);
 }
 
-}
 
-function IngresarNuevaMateria(){
     CreandoMateria();
-}
-
-IngresarNuevaMateria();
 }
 Principal();
