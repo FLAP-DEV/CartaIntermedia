@@ -1,7 +1,6 @@
-
 export interface materia {
-    id: number;
     nombre: string;
+    Día: string;
     HoraDeInicio: number; 
     HoraDeSalida: number;
 }

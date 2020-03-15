@@ -1,6 +1,6 @@
 // La funcion $() sirve para acceder a elementos HTML en Javascript
-/*
 
+/*
 Pedir el nombre de la materia
 Listar los dias de la semana Enter para pasar al siguiente dia o escribimos los horarios 
  --> Hora de Inicio 6
@@ -26,9 +26,8 @@ que tendran un grado de importancia mas elevado dependiendo el numero de horas h
 Pasos
 
 1.crear un arreglo que almacene todas las estructuras 
-2.diferenciar las materias por un Id ya que pueden haber dos materias con el mismo nombre y distinto horario
-  esto ayuda a enlazar o relacionar los datos que luego se ingresaran en plantilla por cuestiones de elegancia
-3.el usuario nos facilitara las filas y columnas de plantilla sin saberlo
+2.el usuario nos facilitara las filas y columnas de plantilla sin saberlo al ingresar las horas correspondientes 
+a cada materia
 
 
 */
@@ -39,6 +38,7 @@ import {materia} from './interfaces/materia'
 
 async function Principal(){
 
+/*
 const Plantilla = [  ['Horario','   Lunes  ','  Martes ' ,'Miercoles ','  Jueves  ',  'Viernes '],
                      ['7 a 8'  ,'Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
                      ['8 a 9'  ,'Hora libre','Hora libre','Hora libre','Hora libre','Hora libre'],
@@ -54,35 +54,52 @@ const Plantilla = [  ['Horario','   Lunes  ','  Martes ' ,'Miercoles ','  Jueves
                      ['19 a 20','Hora libre','Hora libre','Hora libre','Hora libre','Hora libre']  
                   ]
 
+
 Plantilla.forEach(
+
     function(valorActual){
 
         console.log(valorActual);
 
     }
 );
+*/
+
+
 
 const ListadeMateriasIngresadas: materia[] = [];
 
 
 
 async function CreandoMateria(){
+
    let NoEsEntero;
    let NoEstaEnHorarioPermitido;
    let opcionInvalida;
 
+    const nombreMateria = await prompts({
+          type: "string",
+          name: "Materia",
+          message: "Dame el nombre de la Materia que deseas Ingresar "
+    });
 
-   do{
-      const FilaMateria = await prompts({
-        type: "number",
-        name: "Dia",
-        message: "'Selecciona el dia de clases \n Lunes --> 1 \n Martes --> 2 \n Miercoles --> 3 \n Jueves --> 4 \n Viernes --> 5 \n Siguiente --> 6'"
-      });
-     NoEsEntero = Math.floor(FilaMateria.Dia) != FilaMateria.Dia;
-     opcionInvalida = FilaMateria.Dia < 1 || FilaMateria.Dia > 7;
+
+
+
+
+    do{
+        const FilaMateria = await prompts({
+           type: "number",
+           name: "Dia",
+           message: "'Selecciona el dia de clases' \n Lunes --> 1 \n Martes --> 2 \n Miercoles --> 3 \n Jueves --> 4 \n Viernes --> 5"
+        });
+
+        NoEsEntero = Math.floor(FilaMateria.Dia) != FilaMateria.Dia;
+        opcionInvalida = FilaMateria.Dia < 1 || FilaMateria.Dia > 5;
+
     }while(NoEsEntero || opcionInvalida);
-
-   do{
+    
+    do{
       const ColumnaMateria = await prompts({
         type: "number",
         name: "HoradeInicio",
@@ -94,13 +111,13 @@ async function CreandoMateria(){
         message: "Hora de Salida: "
       });
 
-      const NoEntero1 = Math.floor(ColumnaMateria[0].HoradeInicio) != ColumnaMateria[0].HoradeInicio; 
-      const NoEntero2 = Math.floor(ColumnaMateria[1].HoradeSalida) != ColumnaMateria[1].HoradeSalida; 
-      const FueradeRango1 = ColumnaMateria[0].HoradeInicio < 7 && ColumnaMateria[1].HoradeInicio > 20;
-      const FueradeRango2 = ColumnaMateria[1].HoradeSalida < 7 && ColumnaMateria[1].HoradeSalida > 20;
-      const InicioDudoso = ColumnaMateria[0] >= ColumnaMateria[1];
-      NoEsEntero = NoEntero1 ||  NoEntero2;
-      NoEstaEnHorarioPermitido = FueradeRango1 || FueradeRango2 || InicioDudoso 
+      const NoEnteroHoradeInicio = Math.floor(ColumnaMateria[0].HoradeInicio) != ColumnaMateria[0].HoradeInicio; 
+      const NoEnteroHoradeSalida = Math.floor(ColumnaMateria[1].HoradeSalida) != ColumnaMateria[1].HoradeSalida; 
+      const FueradeRangoHoradeInicio = ColumnaMateria[0].HoradeInicio < 7 || ColumnaMateria[1].HoradeInicio > 20;
+      const FueradeRangoHoradeSalida = ColumnaMateria[1].HoradeSalida < 7 || ColumnaMateria[1].HoradeSalida > 20;
+      const InicioDudoso = ColumnaMateria[0].HoradeInicio >= ColumnaMateria[1].HoradeSalida;
+      NoEsEntero = NoEnteroHoradeInicio ||  NoEnteroHoradeSalida;
+      NoEstaEnHorarioPermitido = FueradeRangoHoradeInicio || FueradeRangoHoradeSalida || InicioDudoso 
 
     }while(NoEsEntero || NoEstaEnHorarioPermitido);
 
