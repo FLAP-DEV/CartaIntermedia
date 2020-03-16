@@ -36,7 +36,7 @@ a cada materia
 import * as prompts from 'prompts';
 import {materia} from './interfaces/materia'
 
-async function Principal(){
+function Principal(){
 
 /*
 const Plantilla = [  ['Horario','   Lunes  ','  Martes ' ,'Miercoles ','  Jueves  ',  'Viernes '],
@@ -82,7 +82,7 @@ async function CreandoMateria(){
     IngresarHorarios(nombreMateria.Materia);
 }
 
-async function IngresarHorarios (nombreMateria){
+async function IngresarHorarios (nombreMateria: string){
 
     let ElDia;
     let LaHoraInicial;

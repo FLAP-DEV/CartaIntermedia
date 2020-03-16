@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/FLAP-DEV/CartaIntermedia/issues"
   },
-  "homepage": "https://github.com/FLAP-DEV/CartaIntermedia#readme"
+  "homepage": "https://github.com/FLAP-DEV/CartaIntermedia#readme",
+  "dependencies": {
+    "prompts": "^2.3.1"
+  }
 }
