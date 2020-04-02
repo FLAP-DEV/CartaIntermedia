@@ -33,8 +33,8 @@ a cada materia
 */
 
 
-import * as prompts from 'prompts';
-import {materia} from './interfaces/materia'
+//import * as prompts from 'prompts';
+//import {materia} from './interfaces/materia'
 
 function Principal(){
 
@@ -64,7 +64,7 @@ Plantilla.forEach(
     }
 );
 */
-
+/*
 const ListadeMateriasIngresadas: materia[] = [];
 let NoEsEntero;
 let NoEstaEnHorarioPermitido;
@@ -151,5 +151,19 @@ async function IngresarHorarios (nombreMateria: string){
 
 
     CreandoMateria();
+    */
+   function yoDeberiasSaber(){
+       let a = 0;
+       let b;
+       do{
+
+        a++;
+        b = 5;
+
+       }while(a < 2)
+       console.log("a = " , a);
+       console.log("b = " , b);
+   }
+yoDeberiasSaber();
 }
 Principal();
